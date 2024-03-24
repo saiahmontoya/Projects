@@ -1,0 +1,172 @@
+% Saiah Montoya
+% CECS 342-07
+% Project 3 Prolog Language History
+% Due Date 10/17/23
+% I certify that this program is my own original work. I did not copy any part of this program from
+% any other source. I further certify that I typed each and every line of code in this program.
+
+% Rule to determine if A is an ancestor of D
+ancestor(A, D) :- parent(A, D).
+ancestor(A, D) :- parent(A, X), ancestor(X, D).
+% Descendant relationship in Prolog
+descendant(D, A) :- parent(A, D).
+descendant(D, A) :- parent(P, D), descendant(P, A).
+% Rule to determine if X and Y are siblings
+sibling(X, Y) :- parent(P, X), parent(P, Y), X \= Y.
+% Rule to determine if X and Y are cousins
+cousin(X, Y) :- ancestor(A, X), ancestor(A, Y), X \= Y.
+%define relative T/F
+relative(X, Y) :- (ancestor(X, Y),!; ancestor(Y, X),! ; sibling(X, Y),! ; cousin(X, Y),! ; parent(X, Y),! ; parent(Y, X),!).
+
+%Define a relationship
+relationship(X, Y, 'parent') :- parent(X, Y).
+relationship(X, Y, 'child') :- parent(Y, X).
+relationship(X, Y, 'ancestor') :- ancestor(X, Y).
+relationship(X, Y, 'descendant') :- ancestor(Y, X).
+relationship(X, Y, 'sibling') :- sibling(X, Y).
+relationship(X, Y, 'cousin') :- cousin(X, Y).
+%call language created predicate
+yearcreated(Language, Year):- language_created(Language, Year).
+
+%create languages
+language_created(fortran1, 1956).
+language_created(lisp, 1958).
+language_created(algol60, 1960).
+language_created(cobol, 1960).
+language_created(pl1, 1964).
+language_created(smalltalk, 1968).
+language_created(pascal,1970).
+language_created(prolog, 1970).
+language_created(scheme, 1974).
+language_created(ml, 1976).
+language_created(fortran77, 1976).
+language_created(c, 1978).
+language_created(smalltalk80, 1980).
+language_created(ada83, 1982).
+language_created(commonlisp, 1984).
+language_created(sml, 1984).
+language_created(cpp, 1984).
+language_created(perl, 1986).
+language_created(eiffel, 1986).
+language_created(caml, 1986).
+language_created(tcl, 1988).
+language_created(python,1990).
+language_created(fortran90, 1990).
+language_created(java, 1994).
+language_created(javascript, 1994).
+language_created(ruby, 1994).
+language_created(perl5, 1994).
+language_created(ocaml, 1996).
+language_created(cppiso, 1998).
+language_created(schemer5rs, 1998).
+language_created(haskell98, 1998).
+language_created(csharp, 2000).
+language_created(python2, 2000).
+language_created(java5, 2004).
+language_created(csharp2, 2004).
+language_created(go, 2008).
+language_created(kotlin, 2010).
+language_created(rust, 2010).
+language_created(haskell2010, 2010).
+language_created(csharp5, 2012).
+language_created(java8, 2014).
+language_created(swift, 2014).
+language_created(javascriptes2017, 2016).
+
+%establish parent relationships
+%fortran1
+parent(fortran1, algol60).
+parent(fortran1, pl1).
+parent(fortran1, fortran77).
+%algol 60
+parent(algol60, tcl).
+parent(algol60, cpp).
+parent(algol60, c).
+parent(algol60, smalltalk).
+parent(algol60, scheme).
+parent(algol60, pl1).
+%lisp
+parent(lisp, scheme).
+parent(lisp, commonlisp).
+%cobol
+parent(cobol, pl1).
+%pl1
+parent(pl1, pascal).
+%smalltalk
+parent(smalltalk, smalltalk80).
+%pascal
+parent(pascal, python).
+parent(pascal, ada83).
+%scheme
+parent(scheme, commonlisp).
+parent(scheme, schemeR5RS).
+%fortran77
+parent(fortran77, fortran90).
+%ML
+parent(ml, sml).
+parent(ml, haskell).
+%C
+parent(c, cpp).
+parent(c, python).
+%smalltalk80
+parent(smalltalk80, ruby).
+parent(smalltalk80, go).
+%ada83
+parent(ada83, eiffel).
+%SML
+parent(sml, caml).
+%C++
+parent(cpp, java).
+parent(cpp, cppiso).
+parent(cpp, rust).
+parent(cpp, python).
+%perl
+parent(perl, ruby).
+parent(perl, perl5).
+%eiffel
+parent(eiffel, ruby).
+%caml
+parent(caml, ocaml).
+%java
+parent(java, csharp).
+parent(java, java5).
+parent(java, javascript).
+%javascript
+parent(javascript, kotlin).
+parent(javascript, javascriptES2017).
+%ruby
+parent(ruby, swift).
+%scheme R5RS
+parent(schemeR5RS, rust).
+%haskell98
+parent(haskell98, rust).
+parent(haskell98, haskell2010).
+%OCaml
+parent(ocaml, rust).
+%C++ ISO
+parent(cppiso, csharp).
+%C#
+parent(csharp, csharp2).
+%python 2.0
+parent(python2, swift).
+parent(python2, go).
+%Java 5
+parent(java5, kotlin).
+parent(java5, java8).
+%C# 2.0
+parent(csharp2, kotlin).
+parent(csharp2, rust).
+%Rust
+parent(rust, swift).
+%Haskell 2010
+parent(haskell2010, swift).
+%C# 5.0
+parent(csharp5, swift).
+parent(csharp5, javascriptES2017).
+
+
+
+
+
+
+
